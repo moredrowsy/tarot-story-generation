@@ -7,17 +7,16 @@ const backgrounds = {
   tragedy: "bg-gradient-to-r from-green-400 via-blue-500 to-purple-500",
 };
 
-const Deck: React.FC<Props> = ({ cards, title, storyType }) => {
+const Deck: React.FC<Props> = ({ cards, storyType, updateSpread }) => {
   const bg = backgrounds[storyType];
+  const title = `A story of ${storyType}`;
 
   return (
-    <div
-      className={`${bg} max-w-screen-xl min-w-min mx-auto rounded shadow-lg`}
-    >
-      <div className="text-center text-4xl font-bold">{title}</div>
+    <div className={`${bg} mx-auto rounded shadow-lg`}>
+      <div className="font-bold text-center text-4xl capitalize">{title}</div>
       <div className="flex gap-4 p-5">
         {cards.map((card) => (
-          <Card key={card.id} card={card} />
+          <Card key={card.id} card={card} updateSpread={updateSpread} />
         ))}
       </div>
     </div>
@@ -28,6 +27,6 @@ export default Deck;
 
 type Props = {
   cards: TarotCardEntity[];
-  title: string;
   storyType: "comedy" | "tragedy";
+  updateSpread: (id: string) => void;
 };

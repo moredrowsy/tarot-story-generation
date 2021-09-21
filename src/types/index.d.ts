@@ -1,6 +1,8 @@
-import { seasons } from "../lib/constants";
+import { seasons, storyTypes } from "../lib/constants";
 
 export type Season = typeof seasons[number];
+
+export type StoryType = typeof storyTypes[number];
 
 export type TarotCardEntity = {
   id: string;
