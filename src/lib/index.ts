@@ -1,6 +1,6 @@
-import { Season, TarotCardEntity } from "../types";
-import { seasons } from "../lib/constants";
-import { getRandomInt } from "../utils";
+import { Season, TarotCardEntity } from '../types';
+import { seasons } from '../lib/constants';
+import { getRandomInt } from '../utils';
 
 /**
  * Generate a templated story from tarot cards.

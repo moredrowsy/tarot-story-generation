@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { tarotCards } from "../lib/data";
-import { storyTypes } from "../lib/constants";
-import { StoryType, TarotCardEntity } from "../types";
-import { getRandomInt, shuffleArray } from "../utils";
+import React, { useEffect, useState } from 'react';
+import { tarotCards } from '../lib/data';
+import { storyTypes } from '../lib/constants';
+import { StoryType, TarotCardEntity } from '../types';
+import { getRandomInt, shuffleArray } from '../utils';
 
-import Button from "./Button";
-import Deck from "./Deck";
-import NarrativeStory from "./NarrativeStory";
+import Button from './Button';
+import Deck from './Deck';
+import NarrativeStory from './NarrativeStory';
 
 function App() {
   const [deck, setDeck] = useState<TarotCardEntity[]>([]);
   const [spread, setSpread] = useState<TarotCardEntity[]>([]);
-  const [storyType, setStoryType] = useState<StoryType>("comedy");
+  const [storyType, setStoryType] = useState<StoryType>('comedy');
 
   const generateRandomDeck = (cards: Record<string, TarotCardEntity>) => {
     const newDeck = Object.keys(tarotCards).map((k) => tarotCards[k]);
@@ -64,15 +64,15 @@ function App() {
   return (
     <>
       {spread.length > 4 && (
-        <div className="mx-auto h-full" style={{ width: 900 }}>
+        <div className='mx-auto h-full' style={{ width: 900 }}>
           <Deck
             cards={spread}
             storyType={storyType}
             updateSpread={updateSpread}
           />
-          <div className="m-5"></div>
+          <div className='m-5'></div>
           <NarrativeStory cards={spread} storyType={storyType} />
-          <div className="m-5"></div>
+          <div className='m-5'></div>
           <Button onClick={onNewSpread}>New Spread</Button>
         </div>
       )}
