@@ -1,6 +1,18 @@
-import { Orientation, Season, StoryType, TarotCardEntity } from '../types';
+import * as EnglishVerbs from 'english-verbs-helper';
+import Irregular from 'english-verbs-irregular/dist/verbs.json';
+import Gerunds from 'english-verbs-gerunds/dist/gerunds.json';
+
+import {
+  Orientation,
+  Season,
+  StoryType,
+  TarotCardEntity,
+  Tense,
+} from '../types';
 import { seasons } from './constants';
 import { getRandomInt } from '../utils';
+
+const VerbsData = EnglishVerbs.mergeVerbsData(Irregular, Gerunds);
 
 /**
  * Generate a templated story from tarot cards.
@@ -13,12 +25,23 @@ export function generatComedy(
 ): string[] {
   return [
     `${cards[0].character} is the best in the world at one thing:
-    ${cards[0][orientations[0]]}.`,
-    `But when ${cards[0].character} ${cards[1][orientations[1]]},
-    they ${cards[2][orientations[2]]}.`,
-    `Now it's up to their best friendv${cards[3].character} to
-    ${cards[3][orientations[3]]}, and in doing so help
-    ${cards[0].character} ${cards[4][orientations[4]]}.`,
+    ${transformPhrase(cards[0][orientations[0]], 'PROGRESSIVE')}.`,
+    `But when ${cards[0].character} ${transformPhrase(
+      cards[1][orientations[1]],
+      'PRESENT'
+    )},
+    they ${transformPhrase(cards[2][orientations[2]], 'PRESENT', 'P')}.`,
+    `Now it's up to their best friend ${cards[3].character} to
+    ${transformPhrase(
+      cards[3][orientations[3]],
+      'PRESENT',
+      'P'
+    )}, and in doing so help
+    ${cards[0].character} ${transformPhrase(
+      cards[4][orientations[4]],
+      'PRESENT',
+      'P'
+    )}.`,
   ];
 }
 
@@ -32,14 +55,22 @@ export function generateTragedy(
   orientations: Orientation[]
 ): string[] {
   return [
-    `${cards[0].character} wants most of all to ${cards[0][orientations[0]]},
-    and all they need to do to get there is ${cards[1][orientations[1]]}.`,
+    `${cards[0].character} wants most of all to ${transformPhrase(
+      cards[0][orientations[0]],
+      'PRESENT',
+      'P'
+    )},
+    and all they need to do to get there is ${transformPhrase(
+      cards[1][orientations[1]],
+      'PRESENT',
+      'P'
+    )}.`,
     `Things are looking up in response, and ${cards[0].character} finds
-    themselves ${cards[2][orientations[2]]}.`,
+    themselves ${transformPhrase(cards[2][orientations[2]], 'PROGRESSIVE')}.`,
     `But then the tide turns and ${cards[0].character} is
-    ${cards[3][orientations[3]]}.`,
+    ${transformPhrase(cards[3][orientations[3]], 'PAST')}.`,
     ` Will they make it through, or will ${cards[0].character} be remembered
-    only for ${cards[4][orientations[4]]}?`,
+    only for ${transformPhrase(cards[4][orientations[4]], 'PROGRESSIVE')}?`,
   ];
 }
 
@@ -76,4 +107,26 @@ export function generateCardOrientations(storyType: StoryType) {
   }
 
   return orientations;
+}
+
+/**
+ * Transform phrase to the specified tense
+ * @param {string} phrase A phrase starting with a present tense verb
+ * @param {Tense} tense A tense type to transform
+ * @returns {string} transformed phrase
+ */
+export function transformPhrase(
+  phrase: string,
+  tense: Tense,
+  nounNumber: EnglishVerbs.Numbers = 'S'
+) {
+  if (phrase.length === 0) return phrase;
+  const firstSpace = phrase.indexOf(' ');
+  const verb = phrase.substring(0, firstSpace);
+  const transformed =
+    tense === 'PROGRESSIVE'
+      ? EnglishVerbs.getIngPart(VerbsData[verb], verb)
+      : EnglishVerbs.getConjugation(VerbsData, verb, tense, nounNumber, {});
+
+  return phrase.replace(verb, transformed);
 }

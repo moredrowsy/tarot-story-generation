@@ -1,4 +1,4 @@
-import { orientations, seasons, storyTypes } from '../lib';
+import { orientations, seasons, storyTypes, tenses } from '../lib';
 
 export type Orientation = typeof orientations[number];
 
@@ -16,3 +16,5 @@ export type TarotCardEntity = {
   reversed: string;
   fortune: string;
 };
+
+export type Tense = typeof tenses[number];

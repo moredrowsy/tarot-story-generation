@@ -7,6 +7,22 @@ import Button from './Button';
 import Deck from './Deck';
 import NarrativeStory from './NarrativeStory';
 
+const mockComedySpread: TarotCardEntity[] = [
+  tarotCards['tarot-wands-09'],
+  tarotCards['tarot-cups-13'],
+  tarotCards['tarot-cups-04'],
+  tarotCards['tarot-cups-09'],
+  tarotCards['tarot-death'],
+];
+
+const mockTragedySpread: TarotCardEntity[] = [
+  tarotCards['tarot-pentacles-02'],
+  tarotCards['tarot-swords-01'],
+  tarotCards['tarot-pentacles-10'],
+  tarotCards['tarot-world'],
+  tarotCards['tarot-cups-11'],
+];
+
 function App() {
   const [deck, setDeck] = useState<TarotCardEntity[]>([]);
   const [spread, setSpread] = useState<TarotCardEntity[]>([]);

@@ -22,7 +22,7 @@ const NarrativeStory: React.FC<Props> = ({
 
   return (
     <div className={`bg-white mx-auto m-5 p-5 rounded shadow-lg`}>
-      <div className='font-bold text-lg mb-5'>{tagline}</div>
+      <div className='font-bold text-lg mb-5 uppercase'>{tagline}</div>
       <div className='text-gray-700'>
         {story.map((line, index) => (
           <div key={index}>{line}</div>
