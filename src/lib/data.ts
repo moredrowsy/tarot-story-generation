@@ -53,7 +53,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'John',
     upright: 'give them what they wanted',
     reversed: 'take what they have for granted',
-    fortune: 'TODO',
+    fortune: 'accomplishments and rewards for all involved',
   },
   'tarot-cups-05': {
     id: 'tarot-cups-05',
@@ -103,7 +103,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'Elizabeth',
     upright: 'make a sacrifice to achieve a larger goal',
     reversed: 'indulge in excess towards a dream',
-    fortune: 'TODO',
+    fortune: 'gluttony and complacency of the mind',
   },
   'tarot-cups-10': {
     id: 'tarot-cups-10',
@@ -121,9 +121,9 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     arcana: 'minor',
     suit: 'cups',
     character: 'Barbara',
-    upright: 'spend money wiseley',
+    upright: 'spend money wisely',
     reversed: 'spend money carelessly',
-    fortune: 'TODO',
+    fortune: 'to be surprised and amused at the irony of it all',
   },
   'tarot-cups-12': {
     id: 'tarot-cups-12',
@@ -143,7 +143,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'Susan',
     upright: 'steady in focusing the mind',
     reversed: 'wallow in self-pity',
-    fortune: 'TODO',
+    fortune: 'to be stuck in obsession by the mind',
   },
   'tarot-cups-14': {
     id: 'tarot-cups-14',
@@ -163,7 +163,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'Jessica',
     upright: 'let go',
     reversed: 'hold tight',
-    fortune: 'TODO',
+    fortune: 'a coming to an end or loss',
   },
   'tarot-devil': {
     id: 'tarot-devil',
@@ -193,7 +193,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'Charles',
     upright: '',
     reversed: '',
-    fortune: '',
+    fortune: 'gentle power in your favor',
   },
   'tarot-fool': {
     id: 'tarot-fool',
@@ -313,7 +313,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'Donald',
     upright: 'juggle resources to make ends meet',
     reversed: 'neglect resources and go into debt',
-    fortune: 'TODO',
+    fortune: 'a paradox that appears insoluble',
   },
   'tarot-pentacles-03': {
     id: 'tarot-pentacles-03',
@@ -393,7 +393,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'Joshua',
     upright: 'shower friends and family with gifts',
     reversed: 'withhold gifts from friends and family',
-    fortune: 'TODO',
+    fortune: 'stimulation, wisdom, and knowledge for inspiration',
   },
   'tarot-pentacles-11': {
     id: 'tarot-pentacles-11',
@@ -473,7 +473,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'George',
     upright: 'make decisions with consideration of the consequences',
     reversed: 'make decisions without considering the consequences.',
-    fortune: 'TODO',
+    fortune: 'imminent need of stern action',
   },
   'tarot-swords-02': {
     id: 'tarot-swords-02',
@@ -713,7 +713,7 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     character: 'Stephen',
     upright: 'refuse to quit',
     reversed: 'accept defeat',
-    fortune: 'overwhelmed by many but expect to rise again',
+    fortune: 'to be overwhelmed but rise again',
   },
   'tarot-wands-10': {
     id: 'tarot-wands-10',
@@ -781,8 +781,8 @@ export const tarotCards: Record<string, TarotCardEntity> = {
     arcana: 'major',
     suit: null,
     character: 'Nicole',
-    upright: 'aware by cost and price',
+    upright: 'avoid indulgence and excess',
     reversed: 'blind by greed and envy',
-    fortune: 'TODO',
+    fortune: 'opportunities at your hand',
   },
 };

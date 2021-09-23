@@ -85,7 +85,7 @@ export function generateTagline(
   season: Season | undefined = undefined
 ): string {
   if (!season) season = seasons[getRandomInt(0, 3)];
-  return String.raw`This ${season}, ${card.fortune}.`;
+  return String.raw`This ${season}, expect ${card.fortune}.`;
 }
 
 /**
