@@ -1,5 +1,5 @@
 import React from 'react';
-import { Position, TarotCardEntity } from '../types';
+import { Orientation, TarotCardEntity } from '../types';
 import Card from './Card';
 
 const backgrounds = {
@@ -8,10 +8,11 @@ const backgrounds = {
 };
 
 const Deck: React.FC<Props> = ({
+  canUpdateCard,
   cards,
+  orientations,
   storyType,
-  positions,
-  updateSpread,
+  onUpdateCard,
 }) => {
   const bg = backgrounds[storyType];
   const title = `A story of ${storyType}`;
@@ -23,9 +24,10 @@ const Deck: React.FC<Props> = ({
         {cards.map((card, index) => (
           <Card
             key={card.id}
+            canUpdateCard={canUpdateCard}
             card={card}
-            position={positions[index]}
-            updateSpread={updateSpread}
+            orientation={orientations[index]}
+            onUpdateCard={onUpdateCard}
           />
         ))}
       </div>
@@ -36,8 +38,9 @@ const Deck: React.FC<Props> = ({
 export default Deck;
 
 type Props = {
+  canUpdateCard: boolean;
   cards: TarotCardEntity[];
+  orientations: Orientation[];
   storyType: 'comedy' | 'tragedy';
-  positions: Position[];
-  updateSpread: (id: string) => void;
+  onUpdateCard: (id: string) => void;
 };

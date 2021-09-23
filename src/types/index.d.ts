@@ -1,6 +1,6 @@
-import { positions, seasons, storyTypes } from '../lib';
+import { orientations, seasons, storyTypes } from '../lib';
 
-export type Position = typeof positions[number];
+export type Orientation = typeof orientations[number];
 
 export type Season = typeof seasons[number];
 

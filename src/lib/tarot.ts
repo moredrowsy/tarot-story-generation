@@ -1,33 +1,46 @@
-import { Position, Season, StoryType, TarotCardEntity } from '../types';
+import { Orientation, Season, StoryType, TarotCardEntity } from '../types';
 import { seasons } from './constants';
 import { getRandomInt } from '../utils';
 
 /**
  * Generate a templated story from tarot cards.
  * @param {TarotCardEntity[]} cards Array of 5 tarot cards
- * @returns {string} story
+ * @returns {string[]} story
  */
-export function generatComedy(cards: TarotCardEntity[]): string {
-  return String.raw`${cards[0].character} is the best in the world at one thing:
-    ${cards[0].upright}. But when ${cards[0].character} ${cards[1].reversed},
-    they ${cards[2].reversed}. Now it's up to their best friend
-    ${cards[3].character} to ${cards[3].upright}, and in doing so help
-    ${cards[0].character} ${cards[4].upright}.`;
+export function generatComedy(
+  cards: TarotCardEntity[],
+  orientations: Orientation[]
+): string[] {
+  return [
+    `${cards[0].character} is the best in the world at one thing:
+    ${cards[0][orientations[0]]}.`,
+    `But when ${cards[0].character} ${cards[1][orientations[1]]},
+    they ${cards[2][orientations[2]]}.`,
+    `Now it's up to their best friendv${cards[3].character} to
+    ${cards[3][orientations[3]]}, and in doing so help
+    ${cards[0].character} ${cards[4][orientations[4]]}.`,
+  ];
 }
 
 /**
  * Generate a templated story from tarot cards.
  * @param {TarotCardEntity[]} cards Array of 5 tarot cards
- * @returns {string} story
+ * @returns {string[]} story
  */
-export function generateTragedy(cards: TarotCardEntity[]): string {
-  return String.raw`${cards[0].character} wants most of all to
-    ${cards[0].upright}, and all they need to do to get there is
-    ${cards[1].reversed}. Things are looking up in response,
-    and ${cards[2].character} finds themselves ${cards[2].upright}.
-    But then the tide turns and ${cards[0].character} is ${cards[3].reversed}.
-    Will they make it through, or will ${cards[4].character} be remembered
-    only for ${cards[4].reversed}?`;
+export function generateTragedy(
+  cards: TarotCardEntity[],
+  orientations: Orientation[]
+): string[] {
+  return [
+    `${cards[0].character} wants most of all to ${cards[0][orientations[0]]},
+    and all they need to do to get there is ${cards[1][orientations[1]]}.`,
+    `Things are looking up in response, and ${cards[0].character} finds
+    themselves ${cards[2][orientations[2]]}.`,
+    `But then the tide turns and ${cards[0].character} is
+    ${cards[3][orientations[3]]}.`,
+    ` Will they make it through, or will ${cards[0].character} be remembered
+    only for ${cards[4][orientations[4]]}?`,
+  ];
 }
 
 /**
@@ -45,22 +58,22 @@ export function generateTagline(
 }
 
 /**
- * Generate card positions based on story type.
+ * Generate card orientations based on story type.
  * @param {TarotCarStoryTypedEntity} storyType A tarot card
- * @returns {Position[]} positions
+ * @returns {Orientation[]} orientations
  */
-export function generateCardPositions(storyType: StoryType) {
-  let positions: Position[] = [];
+export function generateCardOrientations(storyType: StoryType) {
+  let orientations: Orientation[] = [];
 
   switch (storyType) {
     case 'comedy':
-      positions = ['upright', 'reversed', 'reversed', 'upright', 'upright'];
+      orientations = ['upright', 'reversed', 'reversed', 'upright', 'upright'];
       break;
     case 'tragedy':
-      positions = ['upright', 'reversed', 'upright', 'reversed', 'reversed'];
+      orientations = ['upright', 'reversed', 'upright', 'reversed', 'reversed'];
       break;
     default:
   }
 
-  return positions;
+  return orientations;
 }

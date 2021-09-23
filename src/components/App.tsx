@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { generateCardPositions, storyTypes, tarotCards } from '../lib';
-import { Position, StoryType, TarotCardEntity } from '../types';
+import { generateCardOrientations, storyTypes, tarotCards } from '../lib';
+import { Orientation, StoryType, TarotCardEntity } from '../types';
 import { getRandomInt, shuffleArray } from '../utils';
 
 import Button from './Button';
@@ -11,7 +11,7 @@ function App() {
   const [deck, setDeck] = useState<TarotCardEntity[]>([]);
   const [spread, setSpread] = useState<TarotCardEntity[]>([]);
   const [storyType, setStoryType] = useState<StoryType>('comedy');
-  const [positions, setPositions] = useState<Position[]>([]);
+  const [orientations, setOrientations] = useState<Orientation[]>([]);
 
   const generateRandomDeck = (cards: Record<string, TarotCardEntity>) => {
     const newDeck = Object.keys(tarotCards).map((k) => tarotCards[k]);
@@ -37,7 +37,7 @@ function App() {
     setDeck(newDeck);
     setSpread(newSpread);
     setStoryType(newStoryType);
-    setPositions(generateCardPositions(newStoryType));
+    setOrientations(generateCardOrientations(newStoryType));
   }, []);
 
   const onNewSpread = () => {
@@ -49,11 +49,11 @@ function App() {
     setDeck(newDeck);
     setSpread(newSpread);
     setStoryType(newStoryType);
-    setPositions(generateCardPositions(newStoryType));
+    setOrientations(generateCardOrientations(newStoryType));
   };
 
-  const updateSpread = (id: string) => {
-    for (let i = 0; i < deck.length; ++i) {
+  const onUpdateCard = (id: string) => {
+    for (let i = 0; i < spread.length; ++i) {
       if (spread[i].id === id) {
         spread[i] = deck.pop() as TarotCardEntity;
         setDeck([...deck]);
@@ -68,13 +68,27 @@ function App() {
       {spread.length > 4 && (
         <div className='mx-auto h-full' style={{ width: 900 }}>
           <Deck
+            canUpdateCard={deck.length > 0}
+            cards={spread}
+            orientations={orientations}
+            storyType={storyType}
+            onUpdateCard={onUpdateCard}
+          />
+          {deck.length === 0 && (
+            <>
+              <div className='m-5'></div>
+              <div className='text-center font-bold'>
+                There are no more cards in the deck. Choose 'New Spread' to
+                restart
+              </div>
+            </>
+          )}
+          <div className='m-5'></div>
+          <NarrativeStory
             cards={spread}
             storyType={storyType}
-            positions={positions}
-            updateSpread={updateSpread}
+            orientations={orientations}
           />
-          <div className='m-5'></div>
-          <NarrativeStory cards={spread} storyType={storyType} />
           <div className='m-5'></div>
           <Button onClick={onNewSpread}>New Spread</Button>
         </div>
