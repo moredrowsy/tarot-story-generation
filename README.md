@@ -10,6 +10,12 @@ This project is an implementation of the paper "Tarot-based narrative generation
 
 - Node.js
 
+## Install
+
+```bash
+npm install
+```
+
 ## Run
 
 ```bash
