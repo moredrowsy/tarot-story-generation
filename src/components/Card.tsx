@@ -37,11 +37,11 @@ const Card: React.FC<Props> = ({
         </p>
       </div>
       <div className='px-3 py-2'>
-        <p className='text-gray-500 text-xs text-center uppercase'>
+        <p className='select-none text-gray-500 text-xs text-center uppercase'>
           {orientation}
         </p>
       </div>
-      <div className='px-3 py-2 text-center'>
+      <div className='px-3 py-2 select-none text-center'>
         <button
           className={canUpdateCard ? btnStyle : btnStyleDisabled}
           onClick={() => onUpdateCard(card.id)}

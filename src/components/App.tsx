@@ -93,7 +93,7 @@ function App() {
           {deck.length === 0 && (
             <>
               <div className='m-5'></div>
-              <div className='text-center font-bold'>
+              <div className='text-center font-bold text-red-400'>
                 There are no more cards in the deck. Choose 'New Spread' to
                 restart
               </div>
