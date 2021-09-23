@@ -1,5 +1,5 @@
 import React from 'react';
-import { TarotCardEntity } from '../types';
+import { Position, TarotCardEntity } from '../types';
 import Card from './Card';
 
 const backgrounds = {
@@ -7,7 +7,12 @@ const backgrounds = {
   tragedy: 'bg-gradient-to-r from-green-400 via-blue-500 to-purple-500',
 };
 
-const Deck: React.FC<Props> = ({ cards, storyType, updateSpread }) => {
+const Deck: React.FC<Props> = ({
+  cards,
+  storyType,
+  positions,
+  updateSpread,
+}) => {
   const bg = backgrounds[storyType];
   const title = `A story of ${storyType}`;
 
@@ -15,8 +20,13 @@ const Deck: React.FC<Props> = ({ cards, storyType, updateSpread }) => {
     <div className={`${bg} mx-auto rounded shadow-lg`}>
       <div className='font-bold text-center text-4xl capitalize'>{title}</div>
       <div className='flex gap-4 p-5'>
-        {cards.map((card) => (
-          <Card key={card.id} card={card} updateSpread={updateSpread} />
+        {cards.map((card, index) => (
+          <Card
+            key={card.id}
+            card={card}
+            position={positions[index]}
+            updateSpread={updateSpread}
+          />
         ))}
       </div>
     </div>
@@ -28,5 +38,6 @@ export default Deck;
 type Props = {
   cards: TarotCardEntity[];
   storyType: 'comedy' | 'tragedy';
+  positions: Position[];
   updateSpread: (id: string) => void;
 };

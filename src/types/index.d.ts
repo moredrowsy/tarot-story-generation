@@ -1,4 +1,6 @@
-import { seasons, storyTypes } from '../lib/constants';
+import { positions, seasons, storyTypes } from '../lib';
+
+export type Position = typeof positions[number];
 
 export type Season = typeof seasons[number];
 

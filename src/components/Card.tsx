@@ -1,16 +1,18 @@
 import React from 'react';
-import { TarotCardEntity } from '../types';
+import { Position, TarotCardEntity } from '../types';
 
-const Card: React.FC<Props> = ({ card, updateSpread }) => {
+const Card: React.FC<Props> = ({ card, position, updateSpread }) => {
   const { id, name } = card;
+  const scaleValue = position === 'reversed' ? -1 : 1;
 
   return (
-    <div className='bg-white flex flex-col overflow-hidden rounded shadow-lg'>
+    <div className='bg-white flex flex-col overflow-hidden rounded shadow-lg w-full'>
       <div className='flex-grow'>
         <div className='flex justify-center'>
           <img
             style={{
               width: 150,
+              transform: `scale(${scaleValue})`,
             }}
             className='w-full'
             src={require(`../assets/cards/${id}.jpg`).default}
@@ -20,8 +22,10 @@ const Card: React.FC<Props> = ({ card, updateSpread }) => {
       </div>
       <div className='flex-grow px-6 py-4'>
         <div className='font-bold text-xl mb-2 text-center'>{name}</div>
-        <p className='text-gray-700 text-base text-center'>
-          Lorem ipsum dolor sit amet.
+      </div>
+      <div className='px-6 py-4'>
+        <p className='text-gray-500 text-xs text-center uppercase'>
+          {position}
         </p>
       </div>
       <div className='px-6 pt-4 pb-2 text-center'>
@@ -40,5 +44,6 @@ export default Card;
 
 type Props = {
   card: TarotCardEntity;
+  position: Position;
   updateSpread: (id: string) => void;
 };

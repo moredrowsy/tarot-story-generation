@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { tarotCards } from '../lib/data';
-import { storyTypes } from '../lib/constants';
-import { StoryType, TarotCardEntity } from '../types';
+import { generateCardPositions, storyTypes, tarotCards } from '../lib';
+import { Position, StoryType, TarotCardEntity } from '../types';
 import { getRandomInt, shuffleArray } from '../utils';
 
 import Button from './Button';
@@ -12,6 +11,7 @@ function App() {
   const [deck, setDeck] = useState<TarotCardEntity[]>([]);
   const [spread, setSpread] = useState<TarotCardEntity[]>([]);
   const [storyType, setStoryType] = useState<StoryType>('comedy');
+  const [positions, setPositions] = useState<Position[]>([]);
 
   const generateRandomDeck = (cards: Record<string, TarotCardEntity>) => {
     const newDeck = Object.keys(tarotCards).map((k) => tarotCards[k]);
@@ -37,6 +37,7 @@ function App() {
     setDeck(newDeck);
     setSpread(newSpread);
     setStoryType(newStoryType);
+    setPositions(generateCardPositions(newStoryType));
   }, []);
 
   const onNewSpread = () => {
@@ -48,6 +49,7 @@ function App() {
     setDeck(newDeck);
     setSpread(newSpread);
     setStoryType(newStoryType);
+    setPositions(generateCardPositions(newStoryType));
   };
 
   const updateSpread = (id: string) => {
@@ -68,6 +70,7 @@ function App() {
           <Deck
             cards={spread}
             storyType={storyType}
+            positions={positions}
             updateSpread={updateSpread}
           />
           <div className='m-5'></div>
