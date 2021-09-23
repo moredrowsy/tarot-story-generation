@@ -7,7 +7,7 @@ const Card: React.FC<Props> = ({
   orientation,
   onUpdateCard,
 }) => {
-  const { id, name } = card;
+  const { id, name, archetype } = card;
 
   const btnStyle =
     'inline-block bg-gray-200 hover:bg-gray-400 hover:text-white font-semibold mb-2 px-3 py-1 rounded-full text-sm text-gray-700';
@@ -28,15 +28,20 @@ const Card: React.FC<Props> = ({
           />
         </div>
       </div>
-      <div className='flex-grow px-6 py-4'>
+      <div className='flex-grow px-3 py-2'>
         <div className='font-bold text-xl mb-2 text-center'>{name}</div>
       </div>
-      <div className='px-6 py-4'>
+      <div className='px-3 py-2'>
+        <p className='text-gray-900 text-sm text-center capitalize'>
+          {archetype}
+        </p>
+      </div>
+      <div className='px-3 py-2'>
         <p className='text-gray-500 text-xs text-center uppercase'>
           {orientation}
         </p>
       </div>
-      <div className='px-6 pt-4 pb-2 text-center'>
+      <div className='px-3 py-2 text-center'>
         <button
           className={canUpdateCard ? btnStyle : btnStyleDisabled}
           onClick={() => onUpdateCard(card.id)}

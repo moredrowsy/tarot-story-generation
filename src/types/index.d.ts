@@ -12,9 +12,10 @@ export type TarotCardEntity = {
   arcana: 'major' | 'minor';
   suit: null | 'cups' | 'pentacles' | 'swords' | 'wands';
   character: string;
+  archetype: string;
+  fortune: string;
   upright: string;
   reversed: string;
-  fortune: string;
 };
 
 export type Tense = typeof tenses[number];
