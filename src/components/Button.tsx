@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Button: React.FC<Props> = ({ onClick, children }) => {
+const Button: React.FC<Props> = ({ animation, children, onClick }) => {
+  const animationStyle = animation ? `animate-${animation}` : '';
+
   return (
-    <div className='text-center select-none'>
+    <div className={`${animationStyle} text-center select-none`}>
       <button
         className='inline-block bg-gray-200  hover:bg-gray-400 hover:text-white font-semibold px-3 py-1 rounded-full text-md text-gray-700'
         onClick={onClick}
@@ -16,5 +18,6 @@ const Button: React.FC<Props> = ({ onClick, children }) => {
 export default Button;
 
 type Props = {
+  animation?: 'bounce' | 'ping' | 'pulse' | 'spin';
   onClick: () => void;
 };

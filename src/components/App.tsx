@@ -106,7 +106,12 @@ function App() {
             orientations={orientations}
           />
           <div className='m-5'></div>
-          <Button onClick={onNewSpread}>New Spread</Button>
+          <Button
+            onClick={onNewSpread}
+            animation={deck.length === 0 ? 'bounce' : undefined}
+          >
+            New Spread
+          </Button>
         </div>
       )}
     </>
