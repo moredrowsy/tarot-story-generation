@@ -60,15 +60,15 @@ export function generateTragedy(
       'PRESENT',
       'P'
     )},
-    and all they need to do to get there is ${transformPhrase(
+    and all they need to do to get there is to ${transformPhrase(
       cards[1][orientations[1]],
       'PRESENT',
       'P'
     )}.`,
     `Things are looking up in response, and ${cards[0].character} finds
     themselves ${transformPhrase(cards[2][orientations[2]], 'PROGRESSIVE')}.`,
-    `But then the tide turns and ${cards[0].character} is
-    ${transformPhrase(cards[3][orientations[3]], 'PAST')}.`,
+    `But then the tide turns and ${cards[0].character}
+    ${transformPhrase(cards[3][orientations[3]], 'PRESENT', 'S')}.`,
     ` Will they make it through, or will ${cards[0].character} be remembered
     only for ${transformPhrase(cards[4][orientations[4]], 'PROGRESSIVE')}?`,
   ];
