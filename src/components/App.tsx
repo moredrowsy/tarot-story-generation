@@ -7,7 +7,7 @@ import Button from './Button';
 import Deck from './Deck';
 import NarrativeStory from './NarrativeStory';
 
-function App() {
+const App: React.FC<Props> = () => {
   const [deck, setDeck] = useState<TarotCardEntity[]>([]);
   const [spread, setSpread] = useState<TarotCardEntity[]>([]);
   const [storyType, setStoryType] = useState<StoryType>('comedy');
@@ -100,6 +100,8 @@ function App() {
       )}
     </>
   );
-}
+};
 
 export default App;
+
+type Props = {};
